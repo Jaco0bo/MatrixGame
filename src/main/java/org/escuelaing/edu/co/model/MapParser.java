@@ -29,7 +29,7 @@ public class MapParser {
             lines.add(compressed);
         }
 
-        int N = board.N; // asumiendo Board expone N (o reemplaza por 10)
+        int N = board.N;
         for (int r = 0; r < N; r++) {
             String row = r < lines.size() ? lines.get(r) : "";
             for (int c = 0; c < N; c++) {
@@ -48,7 +48,7 @@ public class MapParser {
 
     /**
      * Crea las entidades (Neo y Agents) según asciiMap y las coloca en el board.
-     * Devuelve la lista de entidades creadas. Phaser debe pasarse desde quien orquesta el juego.
+     * Devuelve la lista de entidades creadas.
      */
     public static List<Entity> instantiateEntitiesFromMap(Board board, Phaser phaser, String asciiMap) {
         List<Entity> list = new ArrayList<>();

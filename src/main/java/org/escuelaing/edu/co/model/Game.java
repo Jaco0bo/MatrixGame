@@ -50,7 +50,6 @@ public class Game implements Runnable {
             intents.computeIfAbsent(to, k -> new ArrayList<>()).add(e);
         }
 
-        // regla: si múltiples quieren la misma celda vacía, entra el de menor hash (estable) y otros se quedan
         for (Map.Entry<Pos, List<Entity>> entry : intents.entrySet()) {
             Pos target = entry.getKey();
             List<Entity> claimers = entry.getValue();
@@ -61,12 +60,10 @@ public class Game implements Runnable {
                 Pos from = e.getPos();
                 if (e != winner) continue;
 
-                // aplicación de movimiento si permitido
                 if (!board.inBounds(target) || board.cell(target) == CellType.WALL) continue;
 
                 Entity occupant = board.at(target);
 
-                // casos especiales
                 if (e instanceof Neo) {
                     if (board.cell(target) == CellType.PHONE) { neoWon = true; }
                     if (occupant instanceof Agent) { neoAlive = false; }

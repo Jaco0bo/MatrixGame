@@ -2,8 +2,6 @@ package org.escuelaing.edu.co;
 
 import org.escuelaing.edu.co.model.*;
 import org.escuelaing.edu.co.entity.*;
-import org.escuelaing.edu.co.enumeration.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Phaser;
@@ -23,12 +21,11 @@ public class Main {
                         "......A...";
 
         Board board = MapParser.parse(ascii);
-        Phaser phaser = new Phaser(1); // start with game party
+        Phaser phaser = new Phaser(1);
         List<Entity> entities = MapParser.instantiateEntitiesFromMap(board, phaser, ascii);
 
         Game game = new Game(board, entities, phaser);
 
-        // start entity threads
         List<Thread> threads = new ArrayList<>();
         for (Entity e : entities) {
             Thread t = new Thread(e, e.toString());
@@ -36,14 +33,11 @@ public class Main {
             threads.add(t);
         }
 
-        // start game thread
         Thread gameThread = new Thread(game, "Game");
         gameThread.start();
 
-        // wait for game to finish
         gameThread.join();
 
-        // join entity threads
         for (Thread t : threads) {
             t.interrupt();
             t.join(200);

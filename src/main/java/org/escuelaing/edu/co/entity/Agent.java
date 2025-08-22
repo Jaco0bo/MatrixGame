@@ -13,7 +13,7 @@ public class Agent extends Entity {
 
     @Override
     public Pos decideIntent(GameState view) {
-        // BFS hacia Neo; si no se ve a Neo, moverse aleatorio válido
+        // BFS hacia Neo; si no se ve a Neo, moverse aleatorio
         Pos target = view.neoPos();
         return (target != null)
                 ? Pathfinding.nextStepBFS(view.selfPos(), target, view.cells(), view.occupants())

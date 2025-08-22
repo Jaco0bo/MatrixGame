@@ -40,13 +40,10 @@ public class Board {
     }
 
     public synchronized CellType cell(Pos p) {
-        if (!inBounds(p)) return CellType.WALL; // o EMPTY según tu preferencia
+        if (!inBounds(p)) return CellType.WALL;
         return cells[p.r()][p.c()];
     }
 
-    /**
-     * Método que necesitabas: pública para que MapParser pueda setear celdas.
-     */
     public synchronized void setCell(Pos p, CellType t) {
         if (inBounds(p)) cells[p.r()][p.c()] = t;
     }
