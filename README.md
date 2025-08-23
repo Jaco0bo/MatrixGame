@@ -81,9 +81,9 @@ java -cp out org.escuelaing.edu.co.model.Main
 
 - The Phaser is used to synchronize phases. Typical pattern:
 
-  1. Decision — entities set intent and call phaser.arriveAndAwaitAdvance().
+  1. Decision — entities set intent and call `phaser.arriveAndAwaitAdvance()`.
 
-  2. Apply — Game thread resolves intents and updates board (resolveAndApply()).
+  2. Apply — Game thread resolves intents and updates board (`resolveAndApply()`).
 
   3. Render — Game prints/updates UI and advances the Phaser.
 
