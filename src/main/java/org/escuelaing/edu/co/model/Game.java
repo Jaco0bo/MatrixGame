@@ -26,7 +26,7 @@ public class Game implements Runnable {
     @Override public void run() {
         while (running) {
             // Fase 1 ya esperó: entidades decidieron (arrive in Entities)
-            phaser.arriveAndAwaitAdvance(); // estamos alineados con entidades
+            phaser.arriveAndAwaitAdvance();
 
             // Fase 2: resolver/aplicar movimientos
             resolveAndApply();
